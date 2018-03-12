@@ -1,10 +1,21 @@
 {
   cat("設定夜市麻將bingo基本規則：\n")
+  nmahjong <- c();draw <- c();games <- c();simula <- c()
   
-  nmahjong <- as.numeric(readline(prompt="一局可以抽幾張牌（一般夜市是15張）： "))
-  draw <- as.numeric(readline(prompt="聽牌可以抽幾張牌（輸入0則無聽牌機制，一般是3張）： "))
-  games <- as.numeric(readline(prompt="100元可以玩幾局： "))
-  simula <- as.numeric(readline(prompt="要做幾次模擬(不建議超過百萬次)： "))
+  nmahjong <- as.numeric(readline(prompt="一局可以抽幾張牌(預設15張)： "))
+  draw <- as.numeric(readline(prompt="聽牌可以抽幾張牌(預設3張，輸入0則無聽牌機制)： "))
+  games <- as.numeric(readline(prompt="100元可以玩幾局(預設6局)： "))
+  simula <- as.numeric(readline(prompt="要做幾次模擬(預設10萬，不建議超過百萬次)： "))
+  
+  if(is.na(nmahjong)){nmahjong <- 15
+    }
+  if(is.na(draw)){draw <- 3
+    }
+  if(is.na(games)){games <- 6
+    }
+  if(is.na(simula)){simula <- 100000
+    }
+  
   
   cat("模擬中請稍後...")
   
@@ -62,11 +73,13 @@
           axisnames=T,
           ylab = "probability(%)")
   
-  cat(paste0("\n\n連成一線的機率為",as.numeric(result[1]),"%\n",
-             "連成二線的機率為",as.numeric(result[2]),"%\n",
-             "連成三線的機率為",as.numeric(result[3]),"%\n\n",
-             "每局中獎機率共",sum(result),"%\n",
-             "花100元有",round((1-(1-length(win[win>=1])/simula)^games)*100,3),"%的機率會中獎\n"))
+  cat(paste0("\n\n連成一線的機率為 ",as.numeric(result[1]),"%\n",
+             "連成二線的機率為 ",as.numeric(result[2]),"%\n",
+             "連成三線的機率為 ",as.numeric(result[3]),"%\n\n",
+             "每局中獎機率共 ",sum(result),"%\n",
+             "花100元有 ",round((1-(1-length(win[win>=1])/simula)^games)*100,3),"%的機率會中獎\n"))
 }
+
+
 
 
