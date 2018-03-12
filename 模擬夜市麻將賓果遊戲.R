@@ -1,3 +1,5 @@
+#載下這份文件，打開R，輸入：source("檔案路徑")，enter執行。
+
 {
   cat("設定夜市麻將bingo基本規則：\n")
   nmahjong <- c();draw <- c();games <- c();simula <- c()
